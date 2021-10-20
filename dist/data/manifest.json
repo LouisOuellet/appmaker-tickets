@@ -8,7 +8,10 @@
             "raw": "https:\/\/raw.githubusercontent.com\/LouisOuellet\/"
         }
     },
+    "table": [
+        "tickets"
+    ],
     "name": "tickets",
-    "build": 9,
+    "build": 10,
     "version": "21.10-dev"
 }

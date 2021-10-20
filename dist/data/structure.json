@@ -1,0 +1,104 @@
+{
+    "tickets": {
+        "id": {
+            "order": 1,
+            "type": "int(11)"
+        },
+        "1": "id",
+        "created": {
+            "order": 2,
+            "type": "datetime"
+        },
+        "2": "created",
+        "modified": {
+            "order": 3,
+            "type": "datetime"
+        },
+        "3": "modified",
+        "owner": {
+            "order": 4,
+            "type": "varchar(255)"
+        },
+        "4": "owner",
+        "updated_by": {
+            "order": 5,
+            "type": "varchar(255)"
+        },
+        "5": "updated_by",
+        "category": {
+            "order": 6,
+            "type": "varchar(255)"
+        },
+        "6": "category",
+        "sub_category": {
+            "order": 7,
+            "type": "varchar(255)"
+        },
+        "7": "sub_category",
+        "priority": {
+            "order": 8,
+            "type": "int(11)"
+        },
+        "8": "priority",
+        "status": {
+            "order": 9,
+            "type": "int(11)"
+        },
+        "9": "status",
+        "assigned_to": {
+            "order": 10,
+            "type": "varchar(255)"
+        },
+        "10": "assigned_to",
+        "title": {
+            "order": 11,
+            "type": "varchar(255)"
+        },
+        "11": "title",
+        "content": {
+            "order": 12,
+            "type": "text"
+        },
+        "12": "content",
+        "email": {
+            "order": 13,
+            "type": "varchar(255)"
+        },
+        "13": "email",
+        "user": {
+            "order": 14,
+            "type": "varchar(255)"
+        },
+        "14": "user",
+        "client": {
+            "order": 15,
+            "type": "varchar(255)"
+        },
+        "15": "client",
+        "project": {
+            "order": 16,
+            "type": "varchar(255)"
+        },
+        "16": "project",
+        "phone": {
+            "order": 17,
+            "type": "varchar(255)"
+        },
+        "17": "phone",
+        "assets": {
+            "order": 18,
+            "type": "varchar(255)"
+        },
+        "18": "assets",
+        "time_taken": {
+            "order": 19,
+            "type": "varchar(255)"
+        },
+        "19": "time_taken",
+        "archived": {
+            "order": 20,
+            "type": "varchar(255)"
+        },
+        "20": "archived"
+    }
+}

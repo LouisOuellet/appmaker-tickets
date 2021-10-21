@@ -206,7 +206,7 @@ class ticketsAPI extends CRUDAPI {
 			"request" => $request,
 			"data" => $data,
 			"output" => [
-				'results' => $this->convertToDOM($ticket),
+				'dom' => $this->convertToDOM($ticket),
 				'raw' => $ticket,
 			],
 		];
@@ -700,7 +700,7 @@ class ticketsAPI extends CRUDAPI {
 							"request" => $request,
 							"data" => $data,
 							"output" => [
-								'results' => $this->convertToDOM($ticket),
+								'dom' => $this->convertToDOM($ticket),
 								'raw' => $ticket,
 								'relationships' => $relationships,
 								'subscriptions' => $subscriptions,

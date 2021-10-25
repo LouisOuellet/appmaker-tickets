@@ -16,31 +16,21 @@ class ticketsAPI extends CRUDAPI {
 			$ticket = $this->Auth->read('tickets',$data['id']);
 			if($ticket != null){
 				$ticket = $ticket->all()[0];
-				$relationship = $this->Auth->create('relationships',[
+				$relationship = $this->createRelationship([
 					'relationship_1' => 'tickets',
 					'link_to_1' => $ticket['id'],
 					'relationship_2' => 'users',
 					'link_to_2' => $this->Auth->User['id'],
 				]);
-				$relationship = $this->Auth->read('relationships',$relationship);
-				if($relationship != null){
-					$relationship = $relationship->All()[0];
-					// Return
-					$results = [
-						"success" => $this->Language->Field["Record successfully subscribed"],
-						"request" => $request,
-						"data" => $data,
-						"output" => [
-							"relationship" => $relationship,
-						],
-					];
-				} else {
-					$results = [
-						"error" => $this->Language->Field["Unable to complete the request"],
-						"request" => $request,
-						"data" => $data,
-					];
-				}
+				// Return
+				$results = [
+					"success" => $this->Language->Field["Record successfully subscribed"],
+					"request" => $request,
+					"data" => $data,
+					"output" => [
+						"relationship" => $relationship,
+					],
+				];
 			} else {
 				$results = [
 					"error" => $this->Language->Field["Unable to complete the request"],
@@ -185,7 +175,7 @@ class ticketsAPI extends CRUDAPI {
 		foreach($this->Auth->read('statuses',$ticket['status'],'order')->all() as $statuses){
 			if($statuses['type'] == "tickets"){ $status = $statuses; }
 		}
-		$relationship = $this->Auth->create('relationships',[
+		$this->createRelationship([
 			'relationship_1' => 'tickets',
 			'link_to_1' => $ticket['id'],
 			'relationship_2' => 'statuses',
@@ -195,7 +185,7 @@ class ticketsAPI extends CRUDAPI {
 		foreach($this->Auth->read('priorities',$ticket['priority'],'order')->all() as $priorities){
 			if($priorities['type'] == "tickets"){ $priority = $priorities; }
 		}
-		$relationship = $this->Auth->create('relationships',[
+		$this->createRelationship([
 			'relationship_1' => 'tickets',
 			'link_to_1' => $ticket['id'],
 			'relationship_2' => 'priorities',
@@ -270,13 +260,12 @@ class ticketsAPI extends CRUDAPI {
 			$comment = $this->Auth->create('comments',$data);
 			$comment = $this->Auth->read('comments',$comment)->all()[0];
 			// Create Relationship
-			$relationship = $this->Auth->create('relationships',[
+			$relationship = $this->createRelationship([
 				'relationship_1' => 'tickets',
 				'link_to_1' => $ticket['id'],
 				'relationship_2' => 'comments',
 				'link_to_2' => $comment['id'],
 			]);
-			$relationship = $this->Auth->read('relationships',$relationship)->all()[0];
 			// Return
 			return [
 				"success" => $this->Language->Field["This request was successfull"],
@@ -306,7 +295,7 @@ class ticketsAPI extends CRUDAPI {
 				foreach($this->Auth->read('statuses',$ticket['status'],'order')->all() as $statuses){
 					if($statuses['type'] == "tickets"){ $status = $statuses; }
 				}
-				$relationship = $this->Auth->create('relationships',[
+				$this->createRelationship([
 					'relationship_1' => 'tickets',
 					'link_to_1' => $ticket['id'],
 					'relationship_2' => 'statuses',
@@ -323,7 +312,7 @@ class ticketsAPI extends CRUDAPI {
 				foreach($this->Auth->read('priorities',$ticket['priority'],'order')->all() as $priorities){
 					if($priorities['type'] == "tickets"){ $priority = $priorities; }
 				}
-				$relationship = $this->Auth->create('relationships',[
+				$this->createRelationship([
 					'relationship_1' => 'tickets',
 					'link_to_1' => $ticket['id'],
 					'relationship_2' => 'priorities',
@@ -334,13 +323,12 @@ class ticketsAPI extends CRUDAPI {
 			$note = $this->Auth->create('notes',$data);
 			$note = $this->Auth->read('notes',$note)->all()[0];
 			// Create Relationship
-			$relationship = $this->Auth->create('relationships',[
+			$relationship = $this->createRelationship([
 				'relationship_1' => 'tickets',
 				'link_to_1' => $ticket['id'],
 				'relationship_2' => 'notes',
 				'link_to_2' => $note['id'],
 			]);
-			$relationship = $this->Auth->read('relationships',$relationship)->all()[0];
 			// Return
 			return [
 				"success" => $this->Language->Field["This request was successfull"],
@@ -416,7 +404,7 @@ class ticketsAPI extends CRUDAPI {
 							];
 							$comment = $this->Auth->create('comments', $comment);
 							$comment = $this->Auth->read('comments', $comment)->all()[0];
-							$relationship = $this->Auth->create('relationships',[
+							$this->createRelationship([
 								'relationship_1' => 'tickets',
 								'link_to_1' => $ticket['id'],
 								'relationship_2' => 'comments',
@@ -538,7 +526,7 @@ class ticketsAPI extends CRUDAPI {
 						foreach($this->Auth->read('priorities',$ticket['priority'],'order')->all() as $priorities){
 							if($priorities['type'] == "tickets"){ $priority = $priorities; }
 						}
-						$relationship = $this->Auth->create('relationships',[
+						$this->createRelationship([
 							'relationship_1' => 'tickets',
 							'link_to_1' => $ticket['id'],
 							'relationship_2' => 'priorities',
@@ -548,7 +536,7 @@ class ticketsAPI extends CRUDAPI {
 						foreach($this->Auth->read('statuses',$ticket['status'],'order')->all() as $statuses){
 							if($statuses['type'] == "tickets"){ $status = $statuses; }
 						}
-						$relationship = $this->Auth->create('relationships',[
+						$this->createRelationship([
 							'relationship_1' => 'tickets',
 							'link_to_1' => $ticket['id'],
 							'relationship_2' => 'statuses',
@@ -557,7 +545,7 @@ class ticketsAPI extends CRUDAPI {
 						// Create Entity Relationships
 						if(isset($entity['username'])){
 							// Create User Relationship
-							$relationship = $this->Auth->create('relationships',[
+							$this->createRelationship([
 								'relationship_1' => 'tickets',
 								'link_to_1' => $ticket['id'],
 								'relationship_2' => 'users',
@@ -566,7 +554,7 @@ class ticketsAPI extends CRUDAPI {
 							array_push($subscribed['users'], $entity['id']);
 						} else {
 							// Create Contact Relationship
-							$relationship = $this->Auth->create('relationships',[
+							$this->createRelationship([
 								'relationship_1' => 'tickets',
 								'link_to_1' => $ticket['id'],
 								'relationship_2' => 'contacts',
@@ -575,7 +563,7 @@ class ticketsAPI extends CRUDAPI {
 							array_push($subscribed['contacts'], $entity['id']);
 						}
 						// Create Client Relationship
-						$relationship = $this->Auth->create('relationships',[
+						$this->createRelationship([
 							'relationship_1' => 'tickets',
 							'link_to_1' => $ticket['id'],
 							'relationship_2' => 'clients',
@@ -592,7 +580,7 @@ class ticketsAPI extends CRUDAPI {
 										switch($subscription['relationship']){
 											case"contacts":
 												if(isset($contacts[$subscription['link_to']])){
-													$this->Auth->create('relationships',[
+													$this->createRelationship([
 														'relationship_1' => 'tickets',
 														'link_to_1' => $ticket['id'],
 														'relationship_2' => $subscription['relationship'],
@@ -602,7 +590,7 @@ class ticketsAPI extends CRUDAPI {
 												break;
 											case"users":
 												if(isset($users[$subscription['link_to']])){
-													$this->Auth->create('relationships',[
+													$this->createRelationship([
 														'relationship_1' => 'tickets',
 														'link_to_1' => $ticket['id'],
 														'relationship_2' => $subscription['relationship'],
@@ -611,7 +599,7 @@ class ticketsAPI extends CRUDAPI {
 												}
 												break;
 											default:
-												$this->Auth->create('relationships',[
+												$this->createRelationship([
 													'relationship_1' => 'tickets',
 													'link_to_1' => $ticket['id'],
 													'relationship_2' => $subscription['relationship'],
